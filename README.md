@@ -18,3 +18,14 @@
 - безопасный код, обработка данных средствами фреймворка
 - использование встроенных средств вместо костылей и велосипедов
 - код-стайл PSR
+
+# Install
+
+```bash
+$ echo "127.0.0.1	soa-tz.loc" >> /etc/hosts
+$ cd docker && docker-compose up -d
+$ docker-compose exec php composer install
+$ docker-compose exec php php ./yii migrate
+$ docker-compose exec php php ./yii seeder/seed user
+$ docker-compose exec php php ./yii seeder/seed balancehistory
+```

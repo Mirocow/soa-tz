@@ -35,6 +35,7 @@ return [
             'balance/runtime',
             'site/runtime',
             'console/runtime',
+            'site/web/assets',
         ],
         'setExecutable' => [
             'yii',
