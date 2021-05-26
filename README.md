@@ -1,12 +1,9 @@
-Кандидату требуется показать умение применять SOA-архитектуру, работу с фреймворком, опыт интеграции с API.
-
 Вам необходимо выбрать один из наиболее популярных фреймворков, с которым вы хорошо знакомы: Yii2, Laravel, Symfony, Phalcon.
-
 Разверните два проекта со следующими названиями: site и balance.
-
 Проект balance отвечает за баланс пользователя на сайте.
 
-Используйте базу данных Postgres или MySQL. Структура таблицы balance_history: id (int), value (float), balance (float), user_id (int), created_at (datetime).
+Используйте базу данных Postgres или MySQL. 
+Структура таблицы balance_history: id (int), value (float), balance (float), user_id (int), created_at (datetime).
 
 Проект balance должен принимать json-rpc запросы:
 1. Получить текущий баланс пользователя {"jsonrpc": "2.0", "method": "balance.user-balance", params": {"user_id": 10}, "id": 1}
