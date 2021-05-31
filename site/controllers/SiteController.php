@@ -2,18 +2,10 @@
 
 namespace site\controllers;
 
-use http\Client\Request;
 use site\components\JsonRpc;
-use site\components\RpcJsonRequest;
-use yii\base\BaseObject;
 use yii\httpclient\Client;
-use common\models\LoginForm;
 use Yii;
-use yii\base\InvalidArgumentException;
-use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
 /**
  * Site controller
@@ -46,7 +38,7 @@ class SiteController extends Controller
         /** @var Client $client */
         $client = Yii::$app->get('api');
         $response = $client->createRequest()
-                           ->setUrl('api')
+                           ->setUrl('json-rpc')
                            ->addHeaders(['content-type' => 'application/json'])
                            ->setContent($jsonRpc->getRequest())
                            ->send();
@@ -67,5 +59,4 @@ class SiteController extends Controller
             'historyLimit' => $history['limit'],
         ]);
     }
-
 }

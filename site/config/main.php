@@ -12,6 +12,11 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'site\controllers',
     'defaultRoute' => 'site/index',
+    'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm'   => '@vendor/npm-asset',
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -53,7 +58,16 @@ return [
             'responseConfig' => [
                 'format' => \yii\httpclient\Client::FORMAT_JSON
             ],
-        ]
+        ],
+        'jwt' => [
+            'class' => \sizeg\jwt\Jwt::class,
+            'key'   => 'secret',
+            'jwtValidationData' => [
+                'class' => \sizeg\jwt\JwtValidationData::class,
+                // configure leeway
+                'leeway' => 20,
+            ],
+        ],
     ],
     'params' => $params,
 ];

@@ -69,11 +69,26 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * {@inheritdoc}
+     * @param \Lcobucci\JWT\Token $token
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        foreach (self::$users as $user) {
+            if ($user['id'] === (string) $token->getClaim('uid')) {
+                return new static($user);
+            }
+        }
+
+        return null;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    /*public static function findIdentityByAccessToken($token, $type = null)
+    {
+        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+    }*/
 
     /**
      * Finds user by username

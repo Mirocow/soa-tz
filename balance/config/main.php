@@ -10,7 +10,7 @@ return [
     'id' => 'app-balance',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'balance\controllers',
-    'defaultRoute' => 'api/index',
+    'defaultRoute' => 'json-rpc/index',
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [

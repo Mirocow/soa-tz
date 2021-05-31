@@ -5,6 +5,8 @@ namespace balance\controllers;
 use common\models\BalanceHistory;
 use common\models\User;
 use georgique\yii2\jsonrpc\exceptions\JsonRpcException;
+use sizeg\jwt\JwtHttpBearerAuth;
+use yii\filters\Cors;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -26,7 +28,9 @@ class BalanceController extends Controller
             throw new JsonRpcException();
         }
 
-        $user = $this->findModel($request['user_id']);
+        if (($user = User::findOne($request['user_id'])) === null) {
+            throw new NotFoundHttpException('The requested stream does not exist.');
+        }
 
         return [
             'user_id' => $user->id,
@@ -51,23 +55,6 @@ class BalanceController extends Controller
             'items' => $history,
             'limit' => $limit,
         ];
-    }
-
-
-    /**
-     * Finds the Stream model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return User the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function findModel($id)
-    {
-        if (($model = User::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested stream does not exist.');
-        }
     }
 
 }
